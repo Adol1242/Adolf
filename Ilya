@@ -1,0 +1,15 @@
+function movePic(word){
+myalt.innerHTML=word;
+_x=window.event.clientX;
+_y=window.event.clientY;//сохранение координат курсора мыши в переменные
+_dx=5;//смещение подскаки вправо и влево относительно координат мыши
+//Определение, помещается ли подсказка между курсором и краями экрана
+left=false;right=false;
+if(_dx+_x+myalt.clientWidth>document.body.clientWidth){_x=document.body.clientWidth-myalt.clientWidth-_dx;left=true;}
+if(_dx+_y+myalt.clientHeight>document.body.clientHeight){_y=document.body.clientHeight-myalt.clientHeight-_dx;right=true;}
+//если объект в нижнем правом углу, подсказка всплывает над курсором
+if(left&&right)_y=document.body.clientHeight-myalt.clientHeight-_dx*4;
+//помещение подсказки в найденные коородинаты
+myalt.style.left=_x;
+myalt.style.top=_y+document.body.scrollTop;//смещение подскази в зависимости от высоты прокрученной части документа
+myalt.style.visibility="visible";
